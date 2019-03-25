@@ -1,6 +1,6 @@
 #  Food Recommender Systems
 
-An attempt to produce a nutrient-based meal recommender that makes meal
+An attempt to produce a nutrient-based meal recommender model that can make meal
 recommendations catering to users’ fine-grained food preferences and nutritional
 needs through the use of Collaborative Filtering Methods and various other machine learning techniques.
 
