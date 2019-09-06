@@ -6,11 +6,11 @@ needs through the use of Collaborative Filtering Methods and various other machi
 
 ## Methodology
 
-We will be trying to develop a cluster of similar food items using the dataset
+Tried to develop a cluster of similar food items using the dataset
 consisting of food items and their corresponding calorie content, protein content
 and the ingredients they are composed of.
 
-Firstly, We will be importing the required Python libraries.
+Importing the required Python libraries.
 
 ```python
 import numpy as np
@@ -84,10 +84,10 @@ scores.mean()
 scores.std()
 ```
 
-This means our predicted daily calorie intake would be correct in 95% of the
+This means the predicted daily calorie intake would be correct in 95% of the
 cases.
 
-Our Pre-trained model can be saved as follows:
+Pre-trained model can be saved as follows:
 
 ```python
 save_reg = open('regressor.pickle','wb')
@@ -108,7 +108,7 @@ user_ratings = pd.read_csv('user_ratings.csv', index_col=0)
 user_ratings.head()
 ```
 
-This sparse matrix contains the record of users(rows) of how much they have
+This sparse matrix contains the user's records(rows) of about much they have
 liked a food-item(columns) on a scale of 1-5.
 The user have not rated all the
 food they ate, which are represented by 0 (means NaN)
@@ -129,9 +129,9 @@ corr_user = np.corrcoef(user_based_group)
 corr_user
 ```
 
-We are concerned with knowing the similar user taste so that we can recommend
-what other user enjoys based on their ratings. So, we find the **Pearson
-Correlation Coefficient** for the same
+Concerned with knowing the similar user taste so that recommendations about
+what other user enjoyed can be made. This is done using **Pearson
+Correlation Coefficient**
 
 ```python
 _, ax = plt.subplots(figsize=(15,15))
@@ -139,7 +139,7 @@ sns.heatmap(corr_user, xticklabels= user_ratings.index, yticklabels = user_ratin
 ```
 ![image](https://github.com/hsraps/food-recommender-systems/blob/master/img2.png)
 
-We will only be considering the coefficient values above 0.9 for each user, as
+Considering the coefficient values above 0.9 for each user, as
 can clearly be seen in the above heatmap.
 
 ```python
@@ -172,8 +172,8 @@ dendrogram = sch.dendrogram(sch.linkage(new_X, method="ward"))
 ```
 ![image](https://github.com/hsraps/food-recommender-systems/blob/master/img3.png)
 
-We will be considering K=24 clusters to put similar food into the same category.
-Apply K-Means Clustering afterwards
+Considering K=24 clusters to put similar food into the same category.
+Apply K-Means Clustering,
 
 ```python
 kmeans = KMeans(n_clusters = 24)
@@ -184,16 +184,17 @@ y_means = kmeans.fit_predict(new_X)
 y_means
 ```
 
-Through the use of above model, using user's BMI we can predict his daily
-calorie requirement using **Calorie prediction model**. Ask for user's feedback
-about different food items and store as ratings. Use the cluster of similar food
-items that we created above. Recommend other food items belonging to that
+Through the use of above model, using user's BMI prediction about user's daily
+calorie requirement using **Calorie prediction model** can be made. User's feedback
+about different food items (i.e, ratings) play a crucial role in recommender sytsems. Use the cluster of similar food
+items as made above. Recommend other food items belonging to that
 cluster and also similar user taste preferences.
 
-This will generate a corresponding food dataset for each user. This dataset can
-then be processed to extract food as per need for breakfast, lunch or dinner.
-The sum of calorie consumed per day should satisfy daily calorie requirement.
+This will thus generate a food dataset for each user. This dataset can
+then be processed further to know the meal best for one of the followings- breakfast, lunch or dinner.
+The sum total of calorie consumed per day should satisfy daily calorie requirement.
 
-In this way Clustering algorithms and Dimensionality reduction techniques can be
+Clustering algorithms and Dimensionality reduction techniques can be
 used to produce a simple food recommender systems. There is always a scope for
 improving the efficiency and accuracy of the model.
+
