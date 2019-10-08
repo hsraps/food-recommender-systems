@@ -6,7 +6,7 @@ needs through the use of Collaborative Filtering Methods and various other machi
 
 ## Methodology
 
-Tried to develop a cluster of similar food items using the dataset
+It has been tried to develop a cluster of similar food items using the dataset
 consisting of food items and their corresponding calorie content, protein content
 and the ingredients they are composed of.
 
